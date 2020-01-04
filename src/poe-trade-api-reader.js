@@ -50,8 +50,8 @@ class PoeTradeApiReader extends CachedStorage {
     this.data.cards = {};
     log.info(apiData.result.Cards);
     //for (let cardIndex = 0; cardIndex < apiData.result.cards.length; cardIndex++) {
-    for (let cardIndex = 0; cardIndex < 1; cardIndex++) {
-      let cardData = apiData.result.Cards[cardIndex];
+    for (let cardIndex = 0; cardIndex < apiData.result.Cards.entries.length; cardIndex++) {
+      let cardData = apiData.result.Cards.entries[cardIndex];
       this.data.cards[cardData.id] = cardData.text;
     }
     // Currency
