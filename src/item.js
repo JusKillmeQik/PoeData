@@ -17,7 +17,6 @@ class Item {
   * @param {Array} lines Array containing the item text
   */
   constructor(lines) {
-    log.info("constructing");
     this.lines = lines;
     this.itemName = null;
     this.itemRarity = null;
@@ -38,7 +37,6 @@ class Item {
     this.helpText = "";
     this.flavourText = "";
     this.note = "";
-    log.info("analysing");
     this.analyse();
   }
   analyse() {
@@ -50,7 +48,7 @@ class Item {
     let textBlockDone = false;
     for (let i = 0; i < this.lines.length; i++) {
       let lineCurrent = this.lines[i];
-      log.info(lineCurrent);
+      //log.info(lineCurrent);
       // End of block?
       //if (lineCurrent === "--------") {
       if (lineCurrent.includes("--------")) {
@@ -60,9 +58,8 @@ class Item {
       }
       if (textBlockDone || (i === this.lines.length-1)) {
         textBlockType = this.detectBlockType(textBlock);
-        log.info(textBlockType);
+        //log.info(textBlockType);
         if (textBlockType !== "unknown") {
-          log.info("block check");
           this.analyseBlock(textBlock, textBlockType);
         } else {
           textBlocksUnknown.push(textBlock);
@@ -290,11 +287,9 @@ class Item {
   }
   detectBlockTypeMods(lines) {
     if (this.getImplicitModsParser().match(lines)) {
-      log.info("got implicits so match works");
       return "modsImplicit";
     }
     if (this.getExplicitModsParser().match(lines)) {
-      log.info("got explicits so match works");
       return "modsExplicit";
     }
     if (this.getExplicitModsParser().getMods().length > 0) {
