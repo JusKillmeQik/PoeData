@@ -179,9 +179,12 @@ class Item {
       }
     }
     for (let l = 0; l < lines.length; l++) {
+      log.info("properties");
+      log.info(lines[l]);
       //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
       if (lines[l].includes(":")) {
         let parts = lines[l].split(": ");
+        log.info(parts);
         let name = propertyPrefix+parts[0];
         log.info(name);
         let value = (typeof parts[1] !== "undefined" ? parts[1] : true);
