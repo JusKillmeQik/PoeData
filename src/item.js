@@ -277,9 +277,9 @@ class Item {
         //let regex = new RegExp(parserBlockTypes[typeIndicator].regex);
         var regex = parserBlockTypes[typeIndicator].regex;
         log.info(regex);
-        let match = lines[l].match(regex);
+        var match = lines[l].match(regex);
         log.info(match);
-        if(match.length>0) {
+        if(match !== null) {
           return parserBlockTypes[typeIndicator].type;
         }
       }
