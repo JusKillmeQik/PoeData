@@ -180,8 +180,10 @@ class Item {
     }
     for (let l = 0; l < lines.length; l++) {
       let match = lines[l].match(/^(.+?)(: (.+))?$/i);
+      log.info(match);
       if (match) {
         let name = propertyPrefix+match[1];
+        log.info(name);
         let value = (typeof match[3] !== "undefined" ? match[3] : true);
         let augmented = false;
         if (value !== true) {
