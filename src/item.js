@@ -179,7 +179,7 @@ class Item {
       }
     }
     for (let l = 0; l < lines.length; l++) {
-      let match = lines[l].match(/^(.+?)(: (.+))?$/i);
+      let match = lines[l].match("/^(.+?)(: (.+))?$/i");
       log.info(match);
       if (match) {
         let name = propertyPrefix+match[1];
