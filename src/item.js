@@ -52,7 +52,8 @@ class Item {
       let lineCurrent = this.lines[i];
       log.info(lineCurrent);
       // End of block?
-      if (lineCurrent == "--------") {
+      //if (lineCurrent === "--------") {
+      if (lineCurrent.includes("--------")) {
         textBlockDone = true;
       } else {
         textBlock.push(lineCurrent);
