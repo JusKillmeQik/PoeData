@@ -182,7 +182,7 @@ class Item {
       log.info("properties");
       log.info(lines[l]);
       //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
-      if (lines[l].includes(":")) {
+      //if (lines[l].includes(":")) {
         let parts = lines[l].split(": ");
         log.info(parts);
         let name = propertyPrefix+parts[0];
@@ -203,9 +203,9 @@ class Item {
           value: value,
           augmented: augmented
         };
-      } else {
-        throw new Error("[Item] Unexpected item property:\n"+lines[l]);
-      }
+      //} else {
+      //  throw new Error("[Item] Unexpected item property:\n"+lines[l]);
+      //}
     }
   }
   analyseSockets(lines) {
