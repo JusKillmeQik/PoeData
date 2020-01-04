@@ -275,11 +275,13 @@ class Item {
     for (let typeIndicator in parserBlockTypes) {
       for (let l = 0; l < lines.length; l++) {
         //let regex = new RegExp(parserBlockTypes[typeIndicator].regex);
-        var regex = parserBlockTypes[typeIndicator].regex;
+        var regex = new RegExp(parserBlockTypes[typeIndicator].regex);
         log.info(regex);
-        var match = lines[l].match(regex);
+        log.info(lines[l]);
+        let match = regex.test(lines[l])
+        //let match = lines[l].match(regex);
         log.info(match);
-        if(match !== null) {
+        if(match) {
           return parserBlockTypes[typeIndicator].type;
         }
       }
