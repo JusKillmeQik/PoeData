@@ -273,8 +273,10 @@ class Item {
     }
     // Check simple type detection as defined in "resource/parserBlockTypes.json"
     for (let typeIndicator in parserBlockTypes) {
+      log.info(typeIndicator);
       for (let l = 0; l < lines.length; l++) {
         let regex = new RegExp(parserBlockTypes[typeIndicator].regex);
+        log.info(regex);
         let match = lines[l].match(regex);
         if(match) {
           return parserBlockTypes[typeIndicator].type;
