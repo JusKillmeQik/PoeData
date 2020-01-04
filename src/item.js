@@ -145,23 +145,25 @@ class Item {
   }
   analyseName(lines) {
     // Parse rarity and item name
-    let rarityMatch = lines[0].match(/^Rarity: (.+)$/i);
-    if (rarityMatch) {
+    //let rarityMatch = lines[0].match(/^Rarity: (.+)$/i);
+    let rarityMatch = lines[0].split(": ");
+    //if (rarityMatch) {
       this.itemRarity = rarityMatch[1];
-    }
+    //}
     this.itemName = (this.itemRarity === "Unique" ? lines[ lines.length-2 ] : lines[ lines.length-1 ]);
     this.itemBase = PoeData.getItemBase(this.itemName, this.getArmourTag());
   }
   analyseRequirements(lines) {
     lines.shift();
     for (let l = 0; l < lines.length; l++) {
-      let match = lines[l].match(/^(.+?)(: (.+))?$/i);
-      if (match) {
-        let name = match[1];
-        this.requirements[name] = (typeof match[3] !== "undefined" ? match[3] : true);
-      } else {
-        throw new Error("[Item] Unexpected requirement property:\n"+lines[l]);
-      }
+      //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
+      let match = lines[l].split(": ")
+      //if (match) {
+        let name = match[0];
+        this.requirements[name] = (typeof match[1] !== "undefined" ? match[1] : true);
+      //} else {
+      //  throw new Error("[Item] Unexpected requirement property:\n"+lines[l]);
+      //}
     }
     // Reevaluate the correct base item with the additional information available
     this.itemBase = PoeData.getItemBase(this.itemName, this.getArmourTag());
@@ -179,14 +181,10 @@ class Item {
       }
     }
     for (let l = 0; l < lines.length; l++) {
-      log.info("properties");
-      log.info(lines[l]);
       //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
       //if (lines[l].includes(":")) {
         let parts = lines[l].split(": ");
-        log.info(parts);
         let name = propertyPrefix+parts[0];
-        log.info(name);
         let value = (typeof parts[1] !== "undefined" ? parts[1] : true);
         let augmented = false;
         if (value !== true) {
@@ -209,21 +207,23 @@ class Item {
     }
   }
   analyseSockets(lines) {
-    let socketRegExp = new RegExp(parserBlockTypes["sockets"].regex);
-    let socketMatch = lines[0].match(socketRegExp);
-    if (socketMatch) {
+    //let socketRegExp = new RegExp(parserBlockTypes["sockets"].regex);
+    //let socketMatch = lines[0].match(socketRegExp);
+    let socketMatch = lines[0].split(": ");
+    //if (socketMatch) {
       let socketLinks = socketMatch[1].trim().split(" ");
       for (let l = 0; l < socketLinks.length; l++) {
         this.sockets.addLink( socketLinks[l].split("-") );
       }
-    }
+    //}
   }
   analyseItemLevel(lines) {
-    let itemLevelRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
-    let itemLevelMatch = lines[0].match(itemLevelRegExp);
-    if (itemLevelMatch) {
+    //let itemLevelRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
+    //let itemLevelMatch = lines[0].match(itemLevelRegExp);
+    let itemLevelMatch = lines[0].split(": ");
+    //if (itemLevelMatch) {
       this.itemLevel = parseInt(itemLevelMatch[1]);
-    }
+    //}
   }
   analyseFlavourText(lines) {
     if (this.flavourText !== "") {
@@ -247,11 +247,12 @@ class Item {
     this.corrupted = true;
   }
   analyseNote(lines) {
-    let noteRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
-    let noteMatch = lines[0].match(noteRegExp);
-    if (noteMatch) {
+    //let noteRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
+    //let noteMatch = lines[0].match(noteRegExp);
+    let noteMatch = lines[0].split(": ");
+    //if (noteMatch) {
       this.note = noteMatch[1];
-    }
+    //}
   }
   analyseModsImplicit(lines) {
     this.modsImplicit.push( ...this.getImplicitModsParser().getMods() );
@@ -289,9 +290,11 @@ class Item {
   }
   detectBlockTypeMods(lines) {
     if (this.getImplicitModsParser().match(lines)) {
+      log.info("got implicits so match works");
       return "modsImplicit";
     }
     if (this.getExplicitModsParser().match(lines)) {
+      log.info("got explicits so match works");
       return "modsExplicit";
     }
     if (this.getExplicitModsParser().getMods().length > 0) {
