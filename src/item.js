@@ -75,7 +75,7 @@ class Item {
       this.analyseBlock(textBlock, textBlockType);
     }
     // Debug output
-    /*
+
     console.log( "itemName: "+util.inspect(this.itemName, {depth: null}) );
     console.log( "itemRarity: "+util.inspect(this.itemRarity, {depth: null}) );
     console.log( "itemLevel: "+util.inspect(this.itemLevel, {depth: null}) );
@@ -92,7 +92,7 @@ class Item {
     console.log( "helpText: "+util.inspect(this.helpText, {depth: null}) );
     console.log( "flavourText: "+util.inspect(this.flavourText, {depth: null}) );
     console.log( "note: "+util.inspect(this.note, {depth: null}) );
-    */
+
   }
   analyseBlock(lines, type) {
     switch (type) {
