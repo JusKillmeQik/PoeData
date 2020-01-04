@@ -60,7 +60,6 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
-    log.info(apiData.result.cardIndex);
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
       if (apiData.result[staticIndex].id == "Cards"){
         // Cards
