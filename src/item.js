@@ -50,6 +50,7 @@ class Item {
     let textBlockDone = false;
     for (let i = 0; i < this.lines.length; i++) {
       let lineCurrent = this.lines[i];
+      log.info(lineCurrent);
       // End of block?
       if (lineCurrent === "--------") {
         textBlockDone = true;
@@ -60,6 +61,7 @@ class Item {
         textBlockType = this.detectBlockType(textBlock);
         log.info(textBlockType);
         if (textBlockType !== "unknown") {
+          log.info("block check");
           this.analyseBlock(textBlock, textBlockType);
         } else {
           textBlocksUnknown.push(textBlock);
