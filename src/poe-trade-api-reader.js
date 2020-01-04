@@ -11,8 +11,22 @@ const dataBase = {
   // https://www.pathofexile.com/api/trade/data/static
   cards: null,
   currency: null,
-  mapsBase: null,
-  mapsElder: null,
+  mapsTier1: null,
+  MapsTier2: null,
+  MapsTier3: null,
+  MapsTier4: null,
+  MapsTier5: null,
+  MapsTier6: null,
+  MapsTier7: null,
+  MapsTier8: null,
+  MapsTier9: null,
+  MapsTier10: null,
+  MapsTier11: null,
+  mapsTier12: null,
+  mapsTier13: null,
+  mapsTier14: null,
+  mapsTier15: null,
+  mapsTier16: null,
   essences: null,
   fossils: null,
   fragments: null,
@@ -46,79 +60,217 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
-    // Cards
-    this.data.cards = {};
-    log.info(apiData.result[12].entries[0]);
-    log.info(apiData.result[12].length);
-    //for (let cardIndex = 0; cardIndex < apiData.result.cards.length; cardIndex++) {
-    for (let cardIndex = 0; cardIndex < apiData.result.cards.entries.length; cardIndex++) {
-      let cardData = apiData.result.cards.entries[cardIndex];
-      this.data.cards[cardData.id] = cardData.text;
-    }
-    // Currency
-    this.data.currency = {};
-    for (let currencyIndex = 0; currencyIndex < apiData.result.currency.length; currencyIndex++) {
-      let currencyData = apiData.result.currency[currencyIndex];
-      this.data.currency[currencyData.id] = currencyData.text;
-    }
-    // Maps
-    this.data.mapsBase = {};
-    this.data.mapsElder = {};
-    for (let mapIndex = 0; mapIndex < apiData.result.maps.length; mapIndex++) {
-      let mapData = apiData.result.maps[mapIndex];
-      this.data.mapsBase[mapData.id] = mapData.text;
-    }
-    for (let mapIndex = 0; mapIndex < apiData.result.elder_maps.length; mapIndex++) {
-      let mapData = apiData.result.elder_maps[mapIndex];
-      this.data.mapsElder[mapData.id] = mapData.text;
-    }
-    // Essences
-    this.data.essences = {};
-    for (let essenceIndex = 0; essenceIndex < apiData.result.essences.length; essenceIndex++) {
-      let essenceData = apiData.result.essences[essenceIndex];
-      this.data.essences[essenceData.id] = essenceData.text;
-    }
-    // Fossils
-    this.data.fossils = {};
-    for (let fossilIndex = 0; fossilIndex < apiData.result.fossils.length; fossilIndex++) {
-      let fossilData = apiData.result.fossils[fossilIndex];
-      this.data.fossils[fossilData.id] = fossilData.text;
-    }
-    // Fragments
-    this.data.fragments = {};
-    for (let fragmentIndex = 0; fragmentIndex < apiData.result.fragments.length; fragmentIndex++) {
-      let fragmentData = apiData.result.fragments[fragmentIndex];
-      this.data.fragments[fragmentData.id] = fragmentData.text;
-    }
-    // Incubators
-    this.data.incubators = {};
-    for (let incubatorIndex = 0; incubatorIndex < apiData.result.incubators.length; incubatorIndex++) {
-      let incubatorData = apiData.result.incubators[incubatorIndex];
-      this.data.incubators[incubatorData.id] = incubatorData.text;
-    }
-    // Leaguestones
-    this.data.leaguestones = {};
-    for (let leaguestoneIndex = 0; leaguestoneIndex < apiData.result.leaguestones.length; leaguestoneIndex++) {
-      let leaguestoneData = apiData.result.leaguestones[leaguestoneIndex];
-      this.data.leaguestones[leaguestoneData.id] = leaguestoneData.text;
-    }
-    // Resonators
-    this.data.resonators = {};
-    for (let resonatorIndex = 0; resonatorIndex < apiData.result.resonators.length; resonatorIndex++) {
-      let resonatorData = apiData.result.resonators[resonatorIndex];
-      this.data.resonators[resonatorData.id] = resonatorData.text;
-    }
-    // Scarabs
-    this.data.scarabs = {};
-    for (let scarabIndex = 0; scarabIndex < apiData.result.scarabs.length; scarabIndex++) {
-      let scarabData = apiData.result.scarabs[scarabIndex];
-      this.data.scarabs[scarabData.id] = scarabData.text;
-    }
-    // Vials
-    this.data.vials = {};
-    for (let vialIndex = 0; vialIndex < apiData.result.vials.length; vialIndex++) {
-      let vialData = apiData.result.vials[vialIndex];
-      this.data.vials[vialData.id] = vialData.text;
+    log.info(apiData.result.cardIndex);
+    for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
+      if (apiData.result[staticIndex].id == "Cards"){
+        // Cards
+        this.data.cards = {};
+        //for (let cardIndex = 0; cardIndex < apiData.result.cards.length; cardIndex++) {
+        for (let cardIndex = 0; cardIndex < apiData.result[staticIndex].length; cardIndex++) {
+          let cardData = apiData.result[staticIndex].entries[cardIndex];
+          this.data.cards[cardData.id] = cardData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Currency"){
+        // Currency
+        this.data.currency = {};
+        for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
+          let currencyData = apiData.result[staticIndex].entries[currencyIndex];
+          this.data.currency[currencyData.id] = currencyData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Essences"){
+        // Essences
+        this.data.essences = {};
+        for (let essenceIndex = 0; essenceIndex < apiData.result[staticIndex].length; essenceIndex++) {
+          let essenceData = apiData.result[staticIndex].entries[essenceIndex];
+          this.data.essences[essenceData.id] = essenceData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Fossils"){
+        // Fossils
+        this.data.fossils = {};
+        for (let fossilIndex = 0; fossilIndex < apiData.result[staticIndex].length; fossilIndex++) {
+          let fossilData = apiData.result[staticIndex].entries[fossilIndex];
+          this.data.fossils[fossilData.id] = fossilData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Fragments"){
+        // Fragments
+        this.data.fragments = {};
+        for (let fragmentIndex = 0; fragmentIndex < apiData.result[staticIndex].length; fragmentIndex++) {
+          let fragmentData = apiData.result[staticIndex].entries[fragmentIndex];
+          this.data.fragments[fragmentData.id] = fragmentData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Incubators"){
+        // Incubators
+        this.data.incubators = {};
+        for (let incubatorIndex = 0; incubatorIndex < apiData.result[staticIndex].length; incubatorIndex++) {
+          let incubatorData = apiData.result[staticIndex].entries[incubatorIndex];
+          this.data.incubators[incubatorData.id] = incubatorData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Leaguestones"){
+        // Leaguestones
+        this.data.leaguestones = {};
+        for (let leaguestoneIndex = 0; leaguestoneIndex < apiData.result[staticIndex].length; leaguestoneIndex++) {
+          let leaguestoneData = apiData.result[staticIndex].entries[leaguestoneIndex];
+          this.data.leaguestones[leaguestoneData.id] = leaguestoneData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Resonators"){
+        // Resonators
+        this.data.resonators = {};
+        for (let resonatorIndex = 0; resonatorIndex < apiData.result[staticIndex].length; resonatorIndex++) {
+          let resonatorData = apiData.result[staticIndex].entries[resonatorIndex];
+          this.data.resonators[resonatorData.id] = resonatorData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Scarabs"){
+        // Scarabs
+        this.data.scarabs = {};
+        for (let scarabIndex = 0; scarabIndex < apiData.result[staticIndex].length; scarabIndex++) {
+          let scarabData = apiData.result[staticIndex].entries[scarabIndex];
+          this.data.scarabs[scarabData.id] = scarabData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "Vials"){
+        // Vials
+        this.data.vials = {};
+        for (let vialIndex = 0; vialIndex < apiData.result[staticIndex].length; vialIndex++) {
+          let vialData = apiData.result[staticIndex].entries[vialIndex];
+          this.data.vials[vialData.id] = vialData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier1"){
+        // Maps
+        this.data.mapsTier1 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier1[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier2"){
+        // Maps
+        this.data.mapsTier2 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier2[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier3"){
+        // Maps
+        this.data.mapsTier3 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier3[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier4"){
+        // Maps
+        this.data.mapsTier4 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier4[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier5"){
+        // Maps
+        this.data.mapsTier5 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier5[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier6"){
+        // Maps
+        this.data.mapsTier6 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier6[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier7"){
+        // Maps
+        this.data.mapsTier7 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier7[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier8"){
+        // Maps
+        this.data.mapsTier8 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier8[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier9"){
+        // Maps
+        this.data.mapsTier9 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier9[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier10"){
+        // Maps
+        this.data.mapsTier10 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier10[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier11"){
+        // Maps
+        this.data.mapsTier11 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier11[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier12"){
+        // Maps
+        this.data.mapsTier12 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier12[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier13"){
+        // Maps
+        this.data.mapsTier13 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier13[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier14"){
+        // Maps
+        this.data.mapsTier14 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier14[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier15"){
+        // Maps
+        this.data.mapsTier15 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier15[mapIndex] = mapData.text;
+        }
+      }
+      if (apiData.result[staticIndex].id == "MapsTier16"){
+        // Maps
+        this.data.mapsTier16 = {};
+        for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
+          let mapData = apiData.result[staticIndex].entries[mapIndex];
+          this.data.mapsTier16[mapIndex] = mapData.text;
+        }
+      }
     }
   }
   handleStats(apiData) {

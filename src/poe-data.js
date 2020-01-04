@@ -164,16 +164,44 @@ class PoeData extends CallbackHandler {
     }
     return tradeIds;
   }
-  getMaps(mapType) {
-    if (typeof mapType === "undefined") {
-      mapType = "Base";
+  getMaps(mapTier) {
+    if (typeof mapTier === "undefined") {
+      mapTier = "Tier1";
     }
-    switch (mapType) {
+    switch (mapTier) {
       default:
-      case "Base":
-        return this.tradeApiReader.data.mapsBase;
-      case "Elder":
-        return this.tradeApiReader.data.mapsElder;
+      case "Tier1":
+        return this.tradeApiReader.data.mapsTier1;
+      case "Tier2":
+        return this.tradeApiReader.data.mapsTier2;
+      case "Tier3":
+        return this.tradeApiReader.data.mapsTier3;
+      case "Tier4":
+        return this.tradeApiReader.data.mapsTier4;
+      case "Tier5":
+        return this.tradeApiReader.data.mapsTier5;
+      case "Tier6":
+        return this.tradeApiReader.data.mapsTier6;
+      case "Tier7":
+        return this.tradeApiReader.data.mapsTier7;
+      case "Tier8":
+        return this.tradeApiReader.data.mapsTier8;
+      case "Tier9":
+        return this.tradeApiReader.data.mapsTier9;
+      case "Tier10":
+        return this.tradeApiReader.data.mapsTier10;
+      case "Tier11":
+        return this.tradeApiReader.data.mapsTier11;
+      case "Tier12":
+        return this.tradeApiReader.data.mapsTier12;
+      case "Tier13":
+        return this.tradeApiReader.data.mapsTier13;
+      case "Tier14":
+        return this.tradeApiReader.data.mapsTier14;
+      case "Tier15":
+        return this.tradeApiReader.data.mapsTier15;
+      case "Tier16":
+        return this.tradeApiReader.data.mapsTier16;
     }
   }  
   getItemBase(itemBaseName, armourTag) {
