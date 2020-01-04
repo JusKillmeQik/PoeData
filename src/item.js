@@ -179,18 +179,18 @@ class Item {
       }
     }
     for (let l = 0; l < lines.length; l++) {
-      let match = lines[l].match("/^(.+?)(: (.+))?$/i");
-      log.info(match);
-      if (match) {
-        let name = propertyPrefix+match[1];
+      //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
+      if (lines[l].includes(":")) {
+        let parts = lines[l].split(": ");
+        let name = propertyPrefix+parts[0];
         log.info(name);
-        let value = (typeof match[3] !== "undefined" ? match[3] : true);
+        let value = (typeof parts[1] !== "undefined" ? parts[1] : true);
         let augmented = false;
         if (value !== true) {
           // Check if augmented
-          let matchAugmented = value.match(/^(.+?) \(augmented\)/);
-          if (matchAugmented) {
-            value = matchAugmented[1];
+          let matchAugmented = value.split(" ");
+          if (value.includes("augmented")) {
+            value = matchAugmented[0];
             augmented = true;
           }
           // Split values (min-max)
