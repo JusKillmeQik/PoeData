@@ -60,6 +60,7 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
+    this.data.currency = {};
     this.data.currency["test"] = "what?"
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
       this.data.currency[staticIndex] = apiData.result.length
