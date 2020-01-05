@@ -143,21 +143,21 @@ class Item {
   analyseName(lines) {
     // Parse rarity and item name
     //let rarityMatch = lines[0].match(/^Rarity: (.+)$/i);
-    let rarityMatch = lines[0].split(": ");
+    let rarityMatch = lines[0].trim().split(": ");
     //if (rarityMatch) {
       this.itemRarity = rarityMatch[1];
     //}
-    this.itemName = (this.itemRarity === "Unique" ? lines[ lines.length-2 ] : lines[ lines.length-1 ]);
+    this.itemName = (this.itemRarity === "Unique" ? lines[ lines.length-2 ].trim() : lines[ lines.length-1 ].trim());
     this.itemBase = PoeData.getItemBase(this.itemName, this.getArmourTag());
   }
   analyseRequirements(lines) {
     lines.shift();
     for (let l = 0; l < lines.length; l++) {
       //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
-      let match = lines[l].split(": ")
+      let match = lines[l].trim().split(": ")
       //if (match) {
         let name = match[0];
-        this.requirements[name] = (typeof match[1] !== "undefined" ? match[1] : true);
+        this.requirements[name] = (typeof match[1] !== "undefined" ? match[1].trim() : true);
       //} else {
       //  throw new Error("[Item] Unexpected requirement property:\n"+lines[l]);
       //}
@@ -180,7 +180,7 @@ class Item {
     for (let l = 0; l < lines.length; l++) {
       //let match = lines[l].match(/^(.+?)(: (.+))?$/i);
       //if (lines[l].includes(":")) {
-        let parts = lines[l].split(": ");
+        let parts = lines[l].trim().split(": ");
         let name = propertyPrefix+parts[0];
         let value = (typeof parts[1] !== "undefined" ? parts[1] : true);
         let augmented = false;
@@ -206,9 +206,9 @@ class Item {
   analyseSockets(lines) {
     //let socketRegExp = new RegExp(parserBlockTypes["sockets"].regex);
     //let socketMatch = lines[0].match(socketRegExp);
-    let socketMatch = lines[0].split(": ");
+    let socketMatch = lines[0].trim().split(": ");
     //if (socketMatch) {
-      let socketLinks = socketMatch[1].trim().split(" ");
+      let socketLinks = socketMatch[1].split(" ");
       for (let l = 0; l < socketLinks.length; l++) {
         this.sockets.addLink( socketLinks[l].split("-") );
       }
@@ -217,7 +217,7 @@ class Item {
   analyseItemLevel(lines) {
     //let itemLevelRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
     //let itemLevelMatch = lines[0].match(itemLevelRegExp);
-    let itemLevelMatch = lines[0].split(": ");
+    let itemLevelMatch = lines[0].trim().split(": ");
     //if (itemLevelMatch) {
       this.itemLevel = parseInt(itemLevelMatch[1]);
     //}
@@ -246,7 +246,7 @@ class Item {
   analyseNote(lines) {
     //let noteRegExp = new RegExp(parserBlockTypes["itemLevel"].regex);
     //let noteMatch = lines[0].match(noteRegExp);
-    let noteMatch = lines[0].split(": ");
+    let noteMatch = lines[0].trim().split(": ");
     //if (noteMatch) {
       this.note = noteMatch[1];
     //}
