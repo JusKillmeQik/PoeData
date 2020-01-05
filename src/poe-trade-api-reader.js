@@ -61,6 +61,7 @@ class PoeTradeApiReader extends CachedStorage {
   }
   handleStatic(apiData) {
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
+      log.info(staticIndex);
       if (apiData.result[staticIndex].id == "Cards"){
         // Cards
         this.data.cards = {};
@@ -71,6 +72,7 @@ class PoeTradeApiReader extends CachedStorage {
         }
       }
       if (apiData.result[staticIndex].id == "Currency"){
+        log.info("found currency");
         // Currency
         this.data.currency = {};
         for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
