@@ -50,6 +50,7 @@ class PoeTradeApiReader extends CachedStorage {
     super(Object.assign({}, settingsDefault, settings, { ident: "trade-api" }));
     // Ensure data structures are present
     this.data = Object.assign({}, dataBase, this.data);
+    log.info(this.data.currency);
   }
   handleLeagues(apiData) {
     // Leagues
