@@ -61,9 +61,9 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
-    //this.data.currency = {};
+    this.data.currency = {};
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
-      //this.data.currency[apiData.result[staticIndex].id] = apiData.result[staticIndex].length
+      this.data.currency[apiData.result[staticIndex].id] = apiData.result[staticIndex].length
       if (apiData.result[staticIndex].id == "Cards"){
         // Cards
         this.data.cards = {};
@@ -73,7 +73,7 @@ class PoeTradeApiReader extends CachedStorage {
           this.data.cards[cardData.id] = cardData.text;
         }
       }
-      if (apiData.result[staticIndex].id.trim() === "Currency"){
+      if (apiData.result[staticIndex].id === "Currency"){
         // Currency
         this.data.currency = {};
         for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
