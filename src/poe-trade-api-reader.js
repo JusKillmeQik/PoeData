@@ -60,9 +60,9 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
-    log.info("static data");
+    this.data.currency["test"] = "what?"
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
-      log.info(staticIndex);
+      this.data.currency[staticIndex] = apiData.result.length
       if (apiData.result[staticIndex].id == "Cards"){
         // Cards
         this.data.cards = {};
@@ -73,7 +73,6 @@ class PoeTradeApiReader extends CachedStorage {
         }
       }
       if (apiData.result[staticIndex].id == "Currency"){
-        log.info("found currency");
         // Currency
         this.data.currency = {};
         for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
@@ -311,7 +310,6 @@ class PoeTradeApiReader extends CachedStorage {
       let promiseStatic = this.updateApiData("static");
       let promiseStats = this.updateApiData("stats");
       this.handleLeagues(await promiseLeagues);
-      console.log("about to do static");
       this.handleStatic(await promiseStatic);
       this.handleStats(await promiseStats);
       this.writeCache();
