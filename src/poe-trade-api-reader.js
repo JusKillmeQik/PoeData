@@ -3,7 +3,7 @@
 // Default settings
 const settingsDefault = {
   //cacheLifetime: 60 * 24 * 7
-  cacheLifetime: 10
+  cacheLifetime: 1
 };
 // Base data structure
 const dataBase = {
@@ -61,9 +61,9 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
-    this.data.currency = {};
+    //this.data.currency = {};
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
-      this.data.currency[apiData.result[staticIndex].id] = staticIndex
+      //this.data.currency[apiData.result[staticIndex].id] = apiData.result[staticIndex].length
       if (apiData.result[staticIndex].id == "Cards"){
         // Cards
         this.data.cards = {};
@@ -73,9 +73,9 @@ class PoeTradeApiReader extends CachedStorage {
           this.data.cards[cardData.id] = cardData.text;
         }
       }
-      if (apiData.result[staticIndex].id.trim() == "Currency"){
+      if (apiData.result[staticIndex].id.trim() === "Currency"){
         // Currency
-        //this.data.currency = {};
+        this.data.currency = {};
         for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
           let currencyData = apiData.result[staticIndex].entries[currencyIndex];
           this.data.currency[currencyData.id] = currencyData.text;
