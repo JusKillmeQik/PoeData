@@ -75,7 +75,7 @@ class PoeTradeApiReader extends CachedStorage {
       }
       if (apiData.result[staticIndex].id === "Currency"){
         // Currency
-        this.data.currency = {};
+        //this.data.currency = {};
         for (let currencyIndex = 0; currencyIndex < apiData.result[staticIndex].length; currencyIndex++) {
           let currencyData = apiData.result[staticIndex].entries[currencyIndex];
           this.data.currency[currencyData.id] = currencyData.text;
