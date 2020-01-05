@@ -50,7 +50,6 @@ class PoeTradeApiReader extends CachedStorage {
     super(Object.assign({}, settingsDefault, settings, { ident: "trade-api" }));
     // Ensure data structures are present
     this.data = Object.assign({}, dataBase, this.data);
-    log.info(this.data.currency);
   }
   handleLeagues(apiData) {
     // Leagues
@@ -78,6 +77,7 @@ class PoeTradeApiReader extends CachedStorage {
           let currencyData = apiData.result[staticIndex].entries[currencyIndex];
           this.data.currency[currencyData.id] = currencyData.text;
         }
+        log.info(this.data.currency);
       }
       if (apiData.result[staticIndex].id == "Essences"){
         // Essences
@@ -148,7 +148,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier1 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier1[mapIndex] = mapData.text;
+          this.data.mapsTier1[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier2"){
@@ -156,7 +156,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier2 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier2[mapIndex] = mapData.text;
+          this.data.mapsTier2[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier3"){
@@ -164,7 +164,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier3 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier3[mapIndex] = mapData.text;
+          this.data.mapsTier3[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier4"){
@@ -172,7 +172,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier4 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier4[mapIndex] = mapData.text;
+          this.data.mapsTier4[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier5"){
@@ -180,7 +180,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier5 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier5[mapIndex] = mapData.text;
+          this.data.mapsTier5[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier6"){
@@ -188,7 +188,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier6 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier6[mapIndex] = mapData.text;
+          this.data.mapsTier6[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier7"){
@@ -196,7 +196,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier7 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier7[mapIndex] = mapData.text;
+          this.data.mapsTier7[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier8"){
@@ -204,7 +204,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier8 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier8[mapIndex] = mapData.text;
+          this.data.mapsTier8[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier9"){
@@ -212,7 +212,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier9 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier9[mapIndex] = mapData.text;
+          this.data.mapsTier9[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier10"){
@@ -220,7 +220,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier10 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier10[mapIndex] = mapData.text;
+          this.data.mapsTier10[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier11"){
@@ -228,7 +228,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier11 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier11[mapIndex] = mapData.text;
+          this.data.mapsTier11[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier12"){
@@ -236,7 +236,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier12 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier12[mapIndex] = mapData.text;
+          this.data.mapsTier12[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier13"){
@@ -244,7 +244,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier13 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier13[mapIndex] = mapData.text;
+          this.data.mapsTier13[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier14"){
@@ -252,7 +252,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier14 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier14[mapIndex] = mapData.text;
+          this.data.mapsTier14[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier15"){
@@ -260,7 +260,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier15 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier15[mapIndex] = mapData.text;
+          this.data.mapsTier15[mapData.id] = mapData.text;
         }
       }
       if (apiData.result[staticIndex].id == "MapsTier16"){
@@ -268,7 +268,7 @@ class PoeTradeApiReader extends CachedStorage {
         this.data.mapsTier16 = {};
         for (let mapIndex = 0; mapIndex < apiData.result[staticIndex].length; mapIndex++) {
           let mapData = apiData.result[staticIndex].entries[mapIndex];
-          this.data.mapsTier16[mapIndex] = mapData.text;
+          this.data.mapsTier16[mapData.id] = mapData.text;
         }
       }
     }
