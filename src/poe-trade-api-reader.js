@@ -60,6 +60,7 @@ class PoeTradeApiReader extends CachedStorage {
     }
   }
   handleStatic(apiData) {
+    log.info("static data");
     for (let staticIndex = 0; staticIndex < apiData.result.length; staticIndex++) {
       log.info(staticIndex);
       if (apiData.result[staticIndex].id == "Cards"){
@@ -310,6 +311,7 @@ class PoeTradeApiReader extends CachedStorage {
       let promiseStatic = this.updateApiData("static");
       let promiseStats = this.updateApiData("stats");
       this.handleLeagues(await promiseLeagues);
+      log.info("about to do static");
       this.handleStatic(await promiseStatic);
       this.handleStats(await promiseStats);
       this.writeCache();
