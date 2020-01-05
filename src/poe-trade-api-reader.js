@@ -311,7 +311,7 @@ class PoeTradeApiReader extends CachedStorage {
       let promiseStatic = this.updateApiData("static");
       let promiseStats = this.updateApiData("stats");
       this.handleLeagues(await promiseLeagues);
-      log.info("about to do static");
+      console.log("about to do static");
       this.handleStatic(await promiseStatic);
       this.handleStats(await promiseStats);
       this.writeCache();
