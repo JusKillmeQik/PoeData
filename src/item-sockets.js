@@ -19,7 +19,6 @@ module.exports = class ItemSockets {
   getMaxLinkLength() {
     let result = 0;
     for (let l = 0; l < this.links.length; l++) {
-      log.info(this.links)
       result = Math.max(result, this.links[l].length);
     }
     return result;
