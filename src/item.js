@@ -75,7 +75,11 @@ class Item {
     for (let i = 0; i < textBlocksUnknown.length; i++) {
       textBlock = textBlocksUnknown[i];
       textBlockType = this.detectBlockTypeMods(textBlock);
-      this.analyseBlock(textBlock, textBlockType);
+      if (textBlockType !== "unknown") {
+        this.analyseBlock(textBlock, textBlockType);
+      } else {
+        this.analyseBlock(textBlock, "explicit");
+      }
     }
     // Debug output
     /*
