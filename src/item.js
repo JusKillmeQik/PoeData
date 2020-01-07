@@ -141,6 +141,7 @@ class Item {
         break;
       default:
         //throw new Error("[Item] Unknown block of type '"+type+"':\n"+lines.join("\n"));
+        this.analyseModsExplicit(lines);
         break;
     }
   }
@@ -260,6 +261,12 @@ class Item {
   }
   analyseModsExplicit(lines) {
     this.modsExplicit.push( ...this.getExplicitModsParser().getMods() );
+    if (this.modsExplicit.length == 0){
+      for (let l = 0; l < lines.length; l++) {
+        this.modsExplicit.push(lines[l].trim().replace(/(\\\+)?([0-9]+)/g, "(\\+?#|\\+?$2)"));
+      }
+      log.info(this.modsExplicit);
+    }
   }
   detectBlockType(lines) {
     let type = "unknown";
