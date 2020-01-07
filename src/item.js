@@ -263,7 +263,7 @@ class Item {
     this.modsExplicit.push( ...this.getExplicitModsParser().getMods() );
     if (this.modsExplicit.length == 0){
       for (let l = 0; l < lines.length; l++) {
-        this.modsExplicit.push(lines[l].trim().replace(/(\\\+)?([0-9]+)/g, "(\\+?#|\\+?$2)"));
+        this.modsExplicit.push(lines[l].trim().replace(/\d*\.?\d+/g, "#").replace(/\+/g, ""));
       }
       log.info(this.modsExplicit);
     }
