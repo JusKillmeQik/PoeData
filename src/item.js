@@ -78,7 +78,7 @@ class Item {
       if (textBlockType !== "unknown") {
         this.analyseBlock(textBlock, textBlockType);
       } else {
-        this.analyseBlock(textBlock, "explicit");
+        this.analyseBlock(textBlock, "modsExplicit");
       }
     }
     // Debug output
