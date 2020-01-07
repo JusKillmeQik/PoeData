@@ -37,7 +37,6 @@ class PoeData extends CallbackHandler {
     });
     this.wikiReader.registerCallback("process-wiki-data", (table, data) => {
       self.invokeCallback("process-wiki-data", table, data);
-      log.info(data);
       switch (table) {
         case "items":
           data['description'] = Helpers.decodeHtml(data['description']);
@@ -46,6 +45,7 @@ class PoeData extends CallbackHandler {
           data['flavour text'] = Helpers.decodeHtml(data['flavour text']);
           data['tags'] = (data['tags'] === "" ? [] : data['tags'].split(","));
           //data['mods'] = [];
+          data['mods'] = Helpers.decodeHtml(data['mods']);
           data['stats'] = [];
           break;
         case "mods":
