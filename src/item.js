@@ -73,8 +73,10 @@ class Item {
     }
     // Try to detect the mod blocks within the remaining unknown blocks
     for (let i = 0; i < textBlocksUnknown.length; i++) {
+      log.info("checking unknowns");
       textBlock = textBlocksUnknown[i];
       textBlockType = this.detectBlockTypeMods(textBlock);
+      log.info(textBlockType);
       this.analyseBlock(textBlock, textBlockType);
     }
     // Debug output
@@ -359,8 +361,10 @@ class Item {
     return this.modsImplicitParser;
   }
   getImplicitModsPossible() {
+    log.info("looking for implicits possible")
     if (this.modsImplicitPossible === null) {
       this.modsImplicitPossible = [];
+      log.info(this.itemBase);
       if (this.itemBase !== null) {
         // Get implicits from base item
         for (let i = 0; i < this.itemBase['mods'].length; i++) {
