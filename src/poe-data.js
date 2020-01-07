@@ -312,7 +312,7 @@ class PoeData extends CallbackHandler {
     }
   }
   getCurrencyName(currencyIdent) {
-    log.info(this.tradeApiReader.data.stats[explicit]);
+    log.info(this.tradeApiReader.data.stats);
     if (this.tradeApiReader.data.currency.hasOwnProperty(currencyIdent)) {
       return this.tradeApiReader.data.currency[currencyIdent];
     } else {
