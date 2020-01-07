@@ -48,7 +48,7 @@ class Item {
     let textBlockDone = false;
     for (let i = 0; i < this.lines.length; i++) {
       let lineCurrent = this.lines[i];
-      //log.info(lineCurrent);
+      log.info(lineCurrent);
       // End of block?
       //if (lineCurrent === "--------") {
       if (lineCurrent.includes("--------")) {
@@ -58,7 +58,7 @@ class Item {
       }
       if (textBlockDone || (i === this.lines.length-1)) {
         textBlockType = this.detectBlockType(textBlock);
-        //log.info(textBlockType);
+        log.info(textBlockType);
         if (textBlockType !== "unknown") {
           this.analyseBlock(textBlock, textBlockType);
         } else {
@@ -130,6 +130,7 @@ class Item {
         this.analyseNote(lines);
         break;
       case "modsImplicit":
+        log.info("implicits!")
         this.analyseModsImplicit(lines);
         break;
       case "modsExplicit":
@@ -253,6 +254,7 @@ class Item {
   }
   analyseModsImplicit(lines) {
     this.modsImplicit.push( ...this.getImplicitModsParser().getMods() );
+    log.info(this.modsImplicit);
   }
   analyseModsExplicit(lines) {
     this.modsExplicit.push( ...this.getExplicitModsParser().getMods() );
