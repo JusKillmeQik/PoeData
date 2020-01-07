@@ -45,7 +45,7 @@ class PoeData extends CallbackHandler {
           data['help text'] = Helpers.decodeHtml(data['help text']);
           data['flavour text'] = Helpers.decodeHtml(data['flavour text']);
           data['tags'] = (data['tags'] === "" ? [] : data['tags'].split(","));
-          data['mods'] = [];
+          //data['mods'] = [];
           data['stats'] = [];
           break;
         case "mods":

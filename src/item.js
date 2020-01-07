@@ -48,7 +48,7 @@ class Item {
     let textBlockDone = false;
     for (let i = 0; i < this.lines.length; i++) {
       let lineCurrent = this.lines[i];
-      log.info(lineCurrent);
+      //log.info(lineCurrent);
       // End of block?
       //if (lineCurrent === "--------") {
       if (lineCurrent.includes("--------")) {
@@ -58,7 +58,7 @@ class Item {
       }
       if (textBlockDone || (i === this.lines.length-1)) {
         textBlockType = this.detectBlockType(textBlock);
-        log.info(textBlockType);
+        //log.info(textBlockType);
         if (textBlockType !== "unknown") {
           this.analyseBlock(textBlock, textBlockType);
         } else {
@@ -73,7 +73,7 @@ class Item {
     }
     // Try to detect the mod blocks within the remaining unknown blocks
     for (let i = 0; i < textBlocksUnknown.length; i++) {
-      log.info("checking unknowns");
+      //log.info("checking unknowns");
       textBlock = textBlocksUnknown[i];
       textBlockType = this.detectBlockTypeMods(textBlock);
       log.info(textBlockType);
@@ -132,10 +132,10 @@ class Item {
         this.analyseNote(lines);
         break;
       case "modsImplicit":
-        log.info("implicits!")
         this.analyseModsImplicit(lines);
         break;
       case "modsExplicit":
+        log.info("explicits!")
         this.analyseModsExplicit(lines);
         break;
       default:
@@ -256,10 +256,10 @@ class Item {
   }
   analyseModsImplicit(lines) {
     this.modsImplicit.push( ...this.getImplicitModsParser().getMods() );
-    log.info(this.modsImplicit);
   }
   analyseModsExplicit(lines) {
     this.modsExplicit.push( ...this.getExplicitModsParser().getMods() );
+    log.info(this.modsExplicit);
   }
   detectBlockType(lines) {
     let type = "unknown";
@@ -361,10 +361,8 @@ class Item {
     return this.modsImplicitParser;
   }
   getImplicitModsPossible() {
-    log.info("looking for implicits possible")
     if (this.modsImplicitPossible === null) {
       this.modsImplicitPossible = [];
-      //log.info(this.itemBase);
       if (this.itemBase !== null) {
         // Get implicits from base item
         for (let i = 0; i < this.itemBase['mods'].length; i++) {
@@ -420,6 +418,7 @@ class Item {
     return this.modsExplicitParser;
   }
   getExplicitModsPossible() {
+    log.info(this.itemBase);
     if (this.modsExplicitPossible === null) {
       this.modsExplicitPossible = [];
       // Get explicits from base item
