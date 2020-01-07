@@ -364,7 +364,7 @@ class Item {
     log.info("looking for implicits possible")
     if (this.modsImplicitPossible === null) {
       this.modsImplicitPossible = [];
-      log.info(this.itemBase);
+      //log.info(this.itemBase);
       if (this.itemBase !== null) {
         // Get implicits from base item
         for (let i = 0; i < this.itemBase['mods'].length; i++) {
