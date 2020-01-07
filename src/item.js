@@ -73,10 +73,8 @@ class Item {
     }
     // Try to detect the mod blocks within the remaining unknown blocks
     for (let i = 0; i < textBlocksUnknown.length; i++) {
-      //log.info("checking unknowns");
       textBlock = textBlocksUnknown[i];
       textBlockType = this.detectBlockTypeMods(textBlock);
-      log.info(textBlockType);
       this.analyseBlock(textBlock, textBlockType);
     }
     // Debug output
@@ -135,7 +133,6 @@ class Item {
         this.analyseModsImplicit(lines);
         break;
       case "modsExplicit":
-        log.info("explicits!")
         this.analyseModsExplicit(lines);
         break;
       default:
@@ -259,7 +256,6 @@ class Item {
   }
   analyseModsExplicit(lines) {
     this.modsExplicit.push( ...this.getExplicitModsParser().getMods() );
-    log.info(this.modsExplicit);
   }
   detectBlockType(lines) {
     let type = "unknown";
@@ -418,7 +414,6 @@ class Item {
     return this.modsExplicitParser;
   }
   getExplicitModsPossible() {
-    log.info(this.itemBase);
     if (this.modsExplicitPossible === null) {
       this.modsExplicitPossible = [];
       // Get explicits from base item
