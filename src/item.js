@@ -78,7 +78,11 @@ class Item {
       if (textBlockType !== "unknown") {
         this.analyseBlock(textBlock, textBlockType);
       } else {
-        this.analyseBlock(textBlock, "modsExplicit");
+        if (textBlock.length > 2) {
+          this.analyseBlock(textBlock, "modsExplicit");
+        } else {
+          this.analyseBlock(textBlock, "modsImplicit");
+        }
       }
     }
     // Debug output
@@ -141,7 +145,6 @@ class Item {
         break;
       default:
         //throw new Error("[Item] Unknown block of type '"+type+"':\n"+lines.join("\n"));
-        this.analyseModsExplicit(lines);
         break;
     }
   }
