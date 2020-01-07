@@ -205,7 +205,9 @@ class PoeData extends CallbackHandler {
     }
   }  
   getItemBase(itemBaseName, armourTag) {
+    log.info(itemBaseName);
     let itemBaseIds = this.wikiReader.data.items.byName[itemBaseName];
+    log.info(this.wikiReader.data.items[0]);
     log.info(itemBaseIds);
     if (typeof itemBaseIds === "undefined") {
       // Item most likely has a prefix and/or suffix attached to the name, find the best match
@@ -218,7 +220,6 @@ class PoeData extends CallbackHandler {
         }
       }
       itemBaseIds = itemSearchBestId;
-      log.info(itemBaseIds);
     }
     if (itemBaseIds.length === 1) {
       return this.wikiReader.data.items.byId[itemBaseIds[0]];
