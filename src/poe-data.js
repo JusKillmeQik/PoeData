@@ -151,6 +151,7 @@ class PoeData extends CallbackHandler {
           .replace(/(\\\+)?([0-9]+)/g, "(\\+?#|\\+?$2)")
           .replace(/reduced/g, "(increased|reduced)")
           .replace(/seconds?/g, "seconds?");
+        log.info(tradeRegExpText);
         let tradeRegExp = new RegExp("^"+tradeRegExpText+"( \\([^\\s]+\\))?$", "i");
         for (let statType in this.tradeApiReader.data.stats) {
           for (let statId in this.tradeApiReader.data.stats[statType]) {
@@ -312,7 +313,7 @@ class PoeData extends CallbackHandler {
     }
   }
   getCurrencyName(currencyIdent) {
-    log.info(this.tradeApiReader.data.stats);
+    //log.info(this.tradeApiReader.data.stats);
     if (this.tradeApiReader.data.currency.hasOwnProperty(currencyIdent)) {
       return this.tradeApiReader.data.currency[currencyIdent];
     } else {
